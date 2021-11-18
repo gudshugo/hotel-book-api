@@ -20,7 +20,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReservationInput {
+public class CretateReservationDTO {
 
     @NotNull(message = "You must choose at least one room.")
     @JsonProperty("room_id")

@@ -7,9 +7,9 @@ package com.alten.hotel.book.api.exception;
  * @since 1.0
  */
 
-public class RoomNotFoundException extends CustomException{
+public class ElementNotFoundException extends CustomException {
 
-    public RoomNotFoundException(String message) {
+    public ElementNotFoundException(String message) {
         super(message);
     }
 

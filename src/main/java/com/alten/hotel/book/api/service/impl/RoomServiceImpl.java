@@ -1,6 +1,6 @@
 package com.alten.hotel.book.api.service.impl;
 
-import com.alten.hotel.book.api.exception.RoomNotFoundException;
+import com.alten.hotel.book.api.exception.ElementNotFoundException;
 import com.alten.hotel.book.api.model.Room;
 import com.alten.hotel.book.api.repository.RoomRepository;
 import com.alten.hotel.book.api.service.RoomService;
@@ -21,13 +21,13 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Room findById(long id) {
-        Optional<Room> room = Optional.ofNullable(roomRepository.findById(id));
+        Optional<Room> room = roomRepository.findById(id);
 
         if(room.isPresent()){
             return room.get();
         }
 
-        throw new RoomNotFoundException(String.format("Room with id: %d not found", id));
+        throw new ElementNotFoundException(String.format("Room with id: %d not found", id));
     }
 
 }

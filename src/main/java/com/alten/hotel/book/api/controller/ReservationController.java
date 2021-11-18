@@ -1,6 +1,6 @@
 package com.alten.hotel.book.api.controller;
 
-import com.alten.hotel.book.api.dto.ReservationInput;
+import com.alten.hotel.book.api.dto.CretateReservationDTO;
 import com.alten.hotel.book.api.model.Reservation;
 import com.alten.hotel.book.api.service.ReservationService;
 import io.swagger.annotations.Api;
@@ -36,12 +36,17 @@ public class ReservationController {
 
     /**
      * An endpoint within the Reservations Controller that creates a new reservation.
-     * @param reservationInput Data transfer class (DTO) that contains the arrival and departure dates of the host.
+     * @param cretateReservationDTO Data transfer class (DTO) that contains the arrival and departure dates of the host.
      * @return Class with the output payload with the reservation data, if successful.
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Reservation> createReservation(@Valid @RequestBody ReservationInput reservationInput){
-        return new ResponseEntity<>(reservationService.createReservation(reservationInput), HttpStatus.CREATED);
+    public ResponseEntity<Reservation> createReservation(@Valid @RequestBody CretateReservationDTO cretateReservationDTO){
+        return new ResponseEntity<>(reservationService.createReservation(cretateReservationDTO), HttpStatus.CREATED);
+    }
+
+    @PatchMapping(value = "/{id}/cancel", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Reservation> cancelReservation(@PathVariable long id){
+        return new ResponseEntity<>(reservationService.cancelReservation(id), HttpStatus.OK);
     }
 
 }
