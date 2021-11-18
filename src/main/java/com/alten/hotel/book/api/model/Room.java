@@ -29,8 +29,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Reservation> reservation;
 
