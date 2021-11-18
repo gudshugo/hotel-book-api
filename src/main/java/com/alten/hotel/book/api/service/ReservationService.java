@@ -5,6 +5,6 @@ import com.alten.hotel.book.api.model.Reservation;
 
 public interface ReservationService {
 
-    Reservation createReservation(long roomId, ReservationInput reservationInput);
+    Reservation createReservation(ReservationInput reservationInput);
 
 }

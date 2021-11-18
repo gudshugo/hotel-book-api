@@ -32,4 +32,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.OK);
     }
 
+    @ExceptionHandler(InvalidReservationSpentTimeException.class)
+    public final ResponseEntity<ExceptionResponse> handleRoomNotFoundException(InvalidReservationSpentTimeException invalidReservationSpentTimeException){
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
+                invalidReservationSpentTimeException.getMessage());
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidReservationRangeOfDaysException.class)
+    public final ResponseEntity<ExceptionResponse> handleRoomNotFoundException(InvalidReservationRangeOfDaysException invalidReservationRangeOfDaysException){
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
+                invalidReservationRangeOfDaysException.getMessage());
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
 }

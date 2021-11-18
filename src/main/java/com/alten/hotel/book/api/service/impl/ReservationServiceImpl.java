@@ -24,11 +24,11 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Reservation createReservation(long roomId, ReservationInput reservationInput) {
+    public Reservation createReservation(ReservationInput reservationInput) {
         validateReservationSpentTimeLongerThanThreeDays(reservationInput.getStartDate(), reservationInput.getEndDate());
         validateReservationStartDayAfterThirtyDays(reservationInput.getStartDate());
 
-        Room room = roomService.findById(roomId);
+        Room room = roomService.findById(reservationInput.getRoomId());
 
         Reservation reservation = Reservation.builder()
                 .isReserved(true)

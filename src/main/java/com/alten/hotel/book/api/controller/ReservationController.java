@@ -35,15 +35,13 @@ public class ReservationController {
     }
 
     /**
-     *
-     * @param roomId Parameter that identifies a room in the reservation service.
+     * An endpoint within the Reservations Controller that creates a new reservation.
      * @param reservationInput Data transfer class (DTO) that contains the arrival and departure dates of the host.
      * @return Class with the output payload with the reservation data, if successful.
      */
-    @PostMapping(value = "/{roomId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Reservation> createReservation(@PathVariable long roomId,
-                                                         @Valid @RequestBody ReservationInput reservationInput){
-        return new ResponseEntity<>(reservationService.createReservation(roomId, reservationInput), HttpStatus.CREATED);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Reservation> createReservation(@Valid @RequestBody ReservationInput reservationInput){
+        return new ResponseEntity<>(reservationService.createReservation(reservationInput), HttpStatus.CREATED);
     }
 
 }

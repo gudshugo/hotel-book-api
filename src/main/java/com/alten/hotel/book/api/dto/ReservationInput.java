@@ -22,13 +22,17 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ReservationInput {
 
-    @NotNull(message = "The start date attribute cannot have null values.")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd" )
+    @NotNull(message = "You must choose at least one room.")
+    @JsonProperty("room_id")
+    private Long roomId;
+
+    @NotNull(message = "The start date attribute cannot have null or empty values.")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
     @JsonProperty("start_date")
     private LocalDate startDate;
 
-    @NotNull(message = "The end date attribute cannot have null values.")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd" )
+    @NotNull(message = "The end date attribute can't have null or empty values.")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
     @JsonProperty("end_date")
     private LocalDate endDate;
 
