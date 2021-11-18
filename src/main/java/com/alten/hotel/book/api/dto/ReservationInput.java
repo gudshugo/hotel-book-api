@@ -26,14 +26,14 @@ public class ReservationInput {
     @JsonProperty("room_id")
     private Long roomId;
 
-    @NotNull(message = "The start date attribute cannot have null or empty values.")
+    @NotNull(message = "The start date attribute can't have null or empty values.")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
-    @JsonProperty("start_date")
-    private LocalDate startDate;
+    @JsonProperty("check_in")
+    private LocalDate checkIn;
 
     @NotNull(message = "The end date attribute can't have null or empty values.")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
-    @JsonProperty("end_date")
-    private LocalDate endDate;
+    @JsonProperty("check_out")
+    private LocalDate checkOut;
 
 }

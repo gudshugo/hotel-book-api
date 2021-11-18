@@ -11,7 +11,7 @@ package com.alten.hotel.book.api.exception;
 public class InvalidReservationSpentTimeException extends CustomException{
 
     public InvalidReservationSpentTimeException() {
-        super("The reservation cannot last longer than three days.");
+        super("The reservation can't last longer than three days.");
     }
 
 }

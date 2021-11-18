@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * Class for persistence and reading that represents the reservation of a room.
@@ -29,13 +29,13 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private boolean isReserved = false;
+    private boolean isReserved;
 
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "room_id")
     @JsonIgnore
     private Room room;
 
