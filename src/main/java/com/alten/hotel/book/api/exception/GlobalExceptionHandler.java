@@ -72,4 +72,11 @@ public class GlobalExceptionHandler {
                 pastDayCheckInException.getMessage());
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ReserveDateAlreadyMadeException.class)
+    public final ResponseEntity<ExceptionResponse> handleReserveDateAlreadyMadeException(ReserveDateAlreadyMadeException reserveDateAlreadyMadeException){
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
+                reserveDateAlreadyMadeException.getMessage());
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
 }

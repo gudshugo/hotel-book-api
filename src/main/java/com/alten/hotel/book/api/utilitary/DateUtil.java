@@ -4,6 +4,7 @@ import com.alten.hotel.book.api.exception.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 
 import static com.alten.hotel.book.api.utilitary.Constants.RESERVATION_MAX_RANGE_OF_DAYS;
 import static com.alten.hotel.book.api.utilitary.Constants.RESERVATION_MAX_SPENT_TIME;
@@ -17,6 +18,11 @@ public class DateUtil {
         validateCheckInDateOrder(checkIn, checkOut);
         validateReservationSpentTimeLongerThanThreeDays(checkIn, checkOut);
         validateReservationCheckInAfterThirtyDays(checkIn);
+    }
+
+    public static boolean compareLocalDates(LocalDate currentCheckIn, LocalDate currentCheckOut,
+                                             LocalDate newCheckIn, LocalDate newCheckOut){
+        return currentCheckIn.compareTo(newCheckIn) == 0 && currentCheckOut.compareTo(newCheckOut) == 0;
     }
 
     private static void validadePastCheckIn(LocalDate checkIn){

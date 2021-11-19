@@ -1,6 +1,7 @@
 package com.alten.hotel.book.api.controller;
 
-import com.alten.hotel.book.api.dto.CretateReservationDTO;
+import com.alten.hotel.book.api.dto.ChangeReservationDTO;
+import com.alten.hotel.book.api.dto.CreateReservationDTO;
 import com.alten.hotel.book.api.model.Reservation;
 import com.alten.hotel.book.api.service.ReservationService;
 import io.swagger.annotations.Api;
@@ -36,17 +37,23 @@ public class ReservationController {
 
     /**
      * An endpoint within the Reservations Controller that creates a new reservation.
-     * @param cretateReservationDTO Data transfer class (DTO) that contains the arrival and departure dates of the host.
+     * @param reservationDTO Data transfer class (DTO) that contains the arrival and departure dates of the host.
      * @return Class with the output payload with the reservation data, if successful.
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Reservation> createReservation(@Valid @RequestBody CretateReservationDTO cretateReservationDTO){
-        return new ResponseEntity<>(reservationService.createReservation(cretateReservationDTO), HttpStatus.CREATED);
+    public ResponseEntity<Reservation> createReservation(@Valid @RequestBody CreateReservationDTO reservationDTO){
+        return new ResponseEntity<>(reservationService.createReservation(reservationDTO), HttpStatus.CREATED);
     }
 
     @PatchMapping(value = "/{id}/cancel", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Reservation> cancelReservation(@PathVariable long id){
         return new ResponseEntity<>(reservationService.cancelReservation(id), HttpStatus.OK);
+    }
+
+    @PatchMapping(value = "/{id}/modify", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Reservation> modifyReservation(@PathVariable long id,
+                                                         @Valid @RequestBody ChangeReservationDTO changeReservationDTO){
+        return new ResponseEntity<>(reservationService.modifyReservation(id, changeReservationDTO), HttpStatus.OK);
     }
 
 }

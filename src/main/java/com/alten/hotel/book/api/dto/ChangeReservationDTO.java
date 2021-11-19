@@ -20,11 +20,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CretateReservationDTO {
-
-    @NotNull(message = "You must choose at least one room.")
-    @JsonProperty("room_id")
-    private Long roomId;
+public class ChangeReservationDTO {
 
     @NotNull(message = "The start date attribute can't have null or empty values.")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")

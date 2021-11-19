@@ -1,13 +1,16 @@
 package com.alten.hotel.book.api.service.impl;
 
-import com.alten.hotel.book.api.dto.CretateReservationDTO;
+import com.alten.hotel.book.api.dto.ChangeReservationDTO;
+import com.alten.hotel.book.api.dto.CreateReservationDTO;
 import com.alten.hotel.book.api.exception.ElementNotFoundException;
+import com.alten.hotel.book.api.exception.ReserveDateAlreadyMadeException;
 import com.alten.hotel.book.api.exception.UnavailableRoomException;
 import com.alten.hotel.book.api.model.Reservation;
 import com.alten.hotel.book.api.model.Room;
 import com.alten.hotel.book.api.repository.ReservationRepository;
 import com.alten.hotel.book.api.service.ReservationService;
 import com.alten.hotel.book.api.service.RoomService;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,13 +36,13 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     @Transactional
-    public Reservation createReservation(CretateReservationDTO cretateReservationDTO) {
-        LocalDate checkIn = cretateReservationDTO.getCheckIn();
-        LocalDate checkOut = cretateReservationDTO.getCheckOut();
+    public Reservation createReservation(CreateReservationDTO reservationDTO) {
+        LocalDate checkIn = reservationDTO.getCheckIn();
+        LocalDate checkOut = reservationDTO.getCheckOut();
 
         verifyDateIntegrity(checkIn, checkOut);
 
-        Room room = roomService.findById(cretateReservationDTO.getRoomId());
+        Room room = roomService.findById(reservationDTO.getRoomId());
 
         checkIfRoomIsAvailable(room.getId(), checkIn, checkOut);
 
@@ -66,12 +69,42 @@ public class ReservationServiceImpl implements ReservationService {
         throw new ElementNotFoundException(String.format("Reservation with id: %d not found.", id));
     }
 
+    @Override
+    @Transactional
+    public Reservation modifyReservation(long id, ChangeReservationDTO changeReservationDTO) {
+        LocalDate checkIn = changeReservationDTO.getCheckIn();
+        LocalDate checkOut = changeReservationDTO.getCheckOut();
+
+        verifyDateIntegrity(checkIn, checkOut);
+
+        Optional<Reservation> reservation = Optional.ofNullable(reservationRepository.findByIdAndIsReserved(id, true));
+
+        if(reservation.isPresent()){
+            Reservation currentReservation = reservation.get();
+            checkIfModifiedDateIsSameAsNow(currentReservation.getCheckIn(), currentReservation.getCheckOut(),
+                    checkIn, checkOut);
+            currentReservation.setCheckIn(checkIn);
+            currentReservation.setCheckOut(checkOut);
+            return reservationRepository.save(reservation.get());
+        }
+
+        throw new ElementNotFoundException(String.format("Reservation with id: %d not found.", id));
+    }
+
+
     private void checkIfRoomIsAvailable(long roomId, LocalDate checkIn, LocalDate checkOut){
         Set<Long> reservationIds = reservationRepository.findReservationsBetweencheckInAndcheckOut(roomId,
                 checkIn, checkOut);
 
         if(!reservationIds.isEmpty()){
             throw new UnavailableRoomException();
+        }
+    }
+
+    private void checkIfModifiedDateIsSameAsNow(LocalDate currentCheckIn, LocalDate currentCheckOut,
+                                              LocalDate newCheckIn, LocalDate newCheckOut){
+        if(compareLocalDates(currentCheckIn, currentCheckOut, newCheckIn, newCheckOut)){
+            throw new ReserveDateAlreadyMadeException();
         }
     }
 
