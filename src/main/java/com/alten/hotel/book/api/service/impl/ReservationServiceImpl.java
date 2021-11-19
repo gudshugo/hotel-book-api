@@ -81,8 +81,10 @@ public class ReservationServiceImpl implements ReservationService {
 
         if(reservation.isPresent()){
             Reservation currentReservation = reservation.get();
-            checkIfModifiedDateIsSameAsNow(currentReservation.getCheckIn(), currentReservation.getCheckOut(),
+            checkIfModifiedDateIsSameAsCurrentReservation(currentReservation.getCheckIn(), currentReservation.getCheckOut(),
                     checkIn, checkOut);
+            checkIfRoomIsAvailable(currentReservation.getRoom().getId(), checkIn, checkOut);
+
             currentReservation.setCheckIn(checkIn);
             currentReservation.setCheckOut(checkOut);
             return reservationRepository.save(reservation.get());
@@ -93,7 +95,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 
     private void checkIfRoomIsAvailable(long roomId, LocalDate checkIn, LocalDate checkOut){
-        Set<Long> reservationIds = reservationRepository.findReservationsBetweencheckInAndcheckOut(roomId,
+        Set<Long> reservationIds = reservationRepository.findReservationsBetweenCheckInAndCheckOut(roomId,
                 checkIn, checkOut);
 
         if(!reservationIds.isEmpty()){
@@ -101,7 +103,7 @@ public class ReservationServiceImpl implements ReservationService {
         }
     }
 
-    private void checkIfModifiedDateIsSameAsNow(LocalDate currentCheckIn, LocalDate currentCheckOut,
+    private void checkIfModifiedDateIsSameAsCurrentReservation(LocalDate currentCheckIn, LocalDate currentCheckOut,
                                               LocalDate newCheckIn, LocalDate newCheckOut){
         if(compareLocalDates(currentCheckIn, currentCheckOut, newCheckIn, newCheckOut)){
             throw new ReserveDateAlreadyMadeException();

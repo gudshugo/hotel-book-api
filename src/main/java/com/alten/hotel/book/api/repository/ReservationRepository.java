@@ -17,7 +17,7 @@ public interface ReservationRepository extends CrudRepository<Reservation, Long>
             " AND (:checkIn BETWEEN res.checkIn AND res.checkOut" +
             " OR :checkOut BETWEEN res.checkIn AND res.checkOut)" +
             " AND res.isReserved is true")
-    Set<Long> findReservationsBetweencheckInAndcheckOut(long roomId, LocalDate checkIn, LocalDate checkOut);
+    Set<Long> findReservationsBetweenCheckInAndCheckOut(long roomId, LocalDate checkIn, LocalDate checkOut);
 
     Reservation findByIdAndIsReserved(long id, boolean reserved);
 }
