@@ -1,0 +1,1 @@
+INSERT INTO room (id) VALUES (1)
