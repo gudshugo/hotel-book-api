@@ -33,7 +33,7 @@ public class RoomServiceImpl implements RoomService {
             return room.get();
         }
 
-        throw new ElementNotFoundException(String.format("Room with id: %d not found", id));
+        throw new ElementNotFoundException(String.format("Room with id: %d not found.", id));
     }
 
     @Override

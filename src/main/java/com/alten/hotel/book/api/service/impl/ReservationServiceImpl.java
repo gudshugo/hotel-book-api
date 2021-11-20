@@ -3,7 +3,6 @@ package com.alten.hotel.book.api.service.impl;
 import com.alten.hotel.book.api.dto.input.ChangeReservationInputDTO;
 import com.alten.hotel.book.api.dto.input.CreateReservationInputDTO;
 import com.alten.hotel.book.api.exception.ElementNotFoundException;
-import com.alten.hotel.book.api.exception.ReserveDateAlreadyMadeException;
 import com.alten.hotel.book.api.exception.UnavailableRoomException;
 import com.alten.hotel.book.api.model.Reservation;
 import com.alten.hotel.book.api.model.Room;
@@ -76,12 +75,10 @@ public class ReservationServiceImpl implements ReservationService {
 
         verifyDateIntegrity(checkIn, checkOut);
 
-        Optional<Reservation> reservation = Optional.ofNullable(reservationRepository.findByIdAndIsReserved(id, true));
+        Optional<Reservation> reservation = Optional.ofNullable(reservationRepository.findByRoomIdAndIsReserved(id, true));
 
         if(reservation.isPresent()){
             Reservation currentReservation = reservation.get();
-            checkIfModifiedDateIsSameAsCurrentReservation(currentReservation.getCheckIn(), currentReservation.getCheckOut(),
-                    checkIn, checkOut);
             checkIfRoomIsAvailable(currentReservation.getRoom().getId(), checkIn, checkOut);
 
             currentReservation.setCheckIn(checkIn);
@@ -101,12 +98,4 @@ public class ReservationServiceImpl implements ReservationService {
             throw new UnavailableRoomException();
         }
     }
-
-    private void checkIfModifiedDateIsSameAsCurrentReservation(LocalDate currentCheckIn, LocalDate currentCheckOut,
-                                              LocalDate newCheckIn, LocalDate newCheckOut){
-        if(compareReserveDates(currentCheckIn, currentCheckOut, newCheckIn, newCheckOut)){
-            throw new ReserveDateAlreadyMadeException();
-        }
-    }
-
 }

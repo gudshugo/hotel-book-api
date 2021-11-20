@@ -7,8 +7,6 @@ import com.alten.hotel.book.api.exception.PastDayCheckInException;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.alten.hotel.book.api.utilitary.Constants.RESERVATION_MAX_RANGE_OF_DAYS;

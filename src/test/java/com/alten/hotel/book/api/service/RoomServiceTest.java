@@ -51,7 +51,7 @@ public class RoomServiceTest {
     public void shouldThrowElementNotFoundExceptionWhenFindRoomById(){
         //GIVEN
         final long id = 12L;
-        final String elementNotFoundExceptionMessage = String.format("Room with id: %d not found", id);
+        final String elementNotFoundExceptionMessage = String.format("Room with id: %d not found.", id);
 
         //WHEN
         when(roomRepository.findById(Mockito.any())).thenReturn(Optional.empty());

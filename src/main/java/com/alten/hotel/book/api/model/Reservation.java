@@ -1,10 +1,7 @@
 package com.alten.hotel.book.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -35,6 +32,7 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "room_id")
     @JsonIgnore
+    @ToString.Exclude
     private Room room;
 
 }

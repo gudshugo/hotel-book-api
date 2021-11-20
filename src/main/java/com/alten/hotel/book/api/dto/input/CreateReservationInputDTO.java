@@ -26,7 +26,7 @@ public class CreateReservationInputDTO {
 
     @NotNull(message = "You must choose at least one room.")
     @JsonProperty("room_id")
-    private Long roomId;
+    private long roomId;
 
     @NotNull(message = "The start date attribute can't have null or empty values.")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = Constants.LOCAL_DATE_FORMAT)

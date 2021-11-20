@@ -19,5 +19,5 @@ public interface ReservationRepository extends CrudRepository<Reservation, Long>
             " AND res.isReserved is true")
     Set<Long> findReservationsBetweenCheckInAndCheckOut(long roomId, LocalDate checkIn, LocalDate checkOut);
 
-    Reservation findByIdAndIsReserved(long id, boolean reserved);
+    Reservation findByRoomIdAndIsReserved(long id, boolean reserved);
 }
