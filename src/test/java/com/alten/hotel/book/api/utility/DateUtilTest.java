@@ -30,7 +30,7 @@ public class DateUtilTest {
         //GIVEN
         final LocalDate checkIn = LocalDate.now().minusDays(1);
         final LocalDate checkOut = checkIn.plusDays(2);
-        final String pastDayCheckInExceptionMessage = "The checkIn date can't be earlier than today.";
+        final String pastDayCheckInExceptionMessage = "The check-in date cannot be made using past days.";
 
         //THEN
         Assertions.assertThatThrownBy(() -> verifyDateIntegrity(checkIn, checkOut))
@@ -43,7 +43,7 @@ public class DateUtilTest {
         //GIVEN
         final LocalDate checkIn = LocalDate.now();
         final LocalDate checkOut = checkIn.minusDays(1);
-        final String invalidCheckInDateOrderMessage = "The checkIn date can't be greater than the checkOut date.";
+        final String invalidCheckInDateOrderMessage = "The check-in date can't be greater than the check-out date.";
 
         //THEN
         Assertions.assertThatThrownBy(() -> verifyDateIntegrity(checkIn, checkOut))
