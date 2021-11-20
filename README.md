@@ -50,7 +50,7 @@ To run the container in the docker with the project, execute:
 1 - **Create reservation endpoint:**
 
 **Description**: API endpoint that creates a new reservation.\
-**URI Syntax**: `http://localhost:8080/api/v1/reservation`\
+**URI Syntax**: `POST http://localhost:8080/api/v1/reservation`\
 **Input**:
 - A JSON body, such as:
 ```json
@@ -74,7 +74,7 @@ To run the container in the docker with the project, execute:
 2 - **Cancel reservation endpoint:**
 
 **Description**: API endpoint that cancel a reservation.\
-**URI Syntax**: `http://localhost:8080/api/v1/reservation/{id}/cancel`\
+**URI Syntax**: `PATCH http://localhost:8080/api/v1/reservation/{id}/cancel`\
 **Input**: 
 - {id} refers to a reservation id.
 
@@ -92,7 +92,7 @@ To run the container in the docker with the project, execute:
 3 - **Modify reservation endpoint:**
 
 **Description**: API endpoint that modifies a reservation by id and a given range of dates.\
-**URI Syntax**: `http://localhost:8080/api/v1/reservation/{id}/modify`\
+**URI Syntax**: `PATCH http://localhost:8080/api/v1/reservation/{id}/modify`\
 **Input**: 
 - {id} refers to a reservation id.
 - A JSON body with a range of dates, such as:
@@ -116,7 +116,7 @@ To run the container in the docker with the project, execute:
 4 - **Get room availability endpoint:**
 
 **Description**: API endpoint that get room availability by id and a given range of dates.\
-**URI Syntax**: `http://localhost:8080/api/v1/room/{id}/availability?check_in={check_in}&check_out={check_out}`\
+**URI Syntax**: `GET http://localhost:8080/api/v1/room/{id}/availability?check_in={check_in}&check_out={check_out}`\
 **Input**: 
 - {id} refers to a room id.
 - {check_in} refers to the customer check in informed date.
