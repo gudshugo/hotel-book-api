@@ -33,8 +33,8 @@ To run the container in the docker with the project, execute:
 1 - **Create reservation endpoint.**\
 
 **Description**: API endpoint that creates a new reservation.
-**Syntax**: `http://localhost:8080/api/v1/reservation`
-**Input**: A JSON body, such as:
+- **Syntax**: `http://localhost:8080/api/v1/reservation`
+- **Input**: A JSON body, such as:
 ```json
 {
     "room_id": 1, 
@@ -54,16 +54,16 @@ To run the container in the docker with the project, execute:
 
 2 - **Cancel reservation endpoint.**\
 
-**Description**: API endpoint that cancel a reservation.**
-**Syntax**: `http://localhost:8080/api/v1/reservation/{id}/cancel`
+**Description**: API endpoint that cancel a reservation.**\
+**Syntax**: `http://localhost:8080/api/v1/reservation/{id}/cancel`\
 **Input**: 
-    - {id} refers to a reservation id.
-    - A JSON body, such as:
-    ```json
-    {
-        "id": 1,
-        "checkIn": "2021-12-10",
-        "checkOut": "2021-12-12",
-        "reserved": false
-    }
-    ```
+- {id} refers to a reservation id.
+- A JSON body, such as:
+```json
+{
+    "id": 1,
+    "checkIn": "2021-12-10",
+    "checkOut": "2021-12-12",
+    "reserved": false
+}
+```
