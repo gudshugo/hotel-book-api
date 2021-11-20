@@ -33,11 +33,11 @@ To run the container in the docker with the project, execute:
 
 1 - On the project root, run:
 
-`mvn clean install`
+`$ mvn clean install`
 
 2 - After mvn build, run:
 
-`docker-compose -f [PROJECT_ROOT_PATH]\docker-compose.yml up -d`
+`$ docker-compose -f [PROJECT_ROOT_PATH]\docker-compose.yml up -d`
 
 3 - After that, wait a few second and the API endpoints will already be available for calling at `http://localhost:8080`.
 
@@ -137,3 +137,16 @@ In order to access the complete requisition documentation, check this link below
  http://localhost:8080/swagger-ui/
 ```   
 
+## Tests
+
+For this project, unit tests were created for the service and utility packages.
+
+Unit test coverage can be checked after running the command:
+
+`$ mvn clean install` 
+
+And the jacoco report is available in the project's target/site/jacoco/index.html file, as in the image below:
+
+![image](https://user-images.githubusercontent.com/13324028/142735916-b8e828f2-c4da-45e3-bd45-8f3f83fc8cf3.png)
+
+For more information, contact: gudshugo@gmail.com.
