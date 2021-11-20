@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=booking
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin@_5070
+    ports:
+      - "15432:5432"
+    networks:
+      - hotel-book-api-network
+
+  hotel-book-api:
+    image: gudshugo/alten-image-java:latest
+    container_name: hotel-book-api
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - hotel-book-api-network
+    
+
+networks:
+  hotel-book-api-network:
+    driver: bridge
