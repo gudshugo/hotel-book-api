@@ -3,7 +3,7 @@ A REST API developed in Java (using Spring Boot) to function as a booking system
 
 ## Requirements:
 
-```Maven``
+```Maven```
 ```Java V.11+```
 ```Docker```
 
