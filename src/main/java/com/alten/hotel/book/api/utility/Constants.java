@@ -17,5 +17,6 @@ public class Constants {
     public static final String ROOT_URL_RESERVATION_CONTROLLER = "/api/v1/reservation";
     public static final String ROOT_URL_ROOM_CONTROLLER = "/api/v1/room";
     public static final String LOCAL_DATE_FORMAT = "yyyy-MM-dd";
+    public static final long EXCLUDED_END_DATE = 1L;
 
 }

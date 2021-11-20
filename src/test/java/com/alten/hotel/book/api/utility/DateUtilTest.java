@@ -1,28 +1,39 @@
 package com.alten.hotel.book.api.utility;
 
-import com.alten.hotel.book.api.exception.InvalidCheckInDateOrderException;
-import com.alten.hotel.book.api.exception.InvalidReservationRangeOfDaysException;
-import com.alten.hotel.book.api.exception.InvalidReservationSpentTimeException;
-import com.alten.hotel.book.api.exception.PastDayCheckInException;
+import com.alten.hotel.book.api.exception.*;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.stream.Stream;
 
-import static com.alten.hotel.book.api.utility.DateUtil.*;
+import static com.alten.hotel.book.api.utility.DateUtil.getStreamRangeDatesBetweenTwoDates;
+import static com.alten.hotel.book.api.utility.DateUtil.verifyDateIntegrity;
 
 public class DateUtilTest {
 
     @Test
     public void shouldVerifyDateIntegrityWithSuccess(){
         //GIVEN
-        final LocalDate checkIn = LocalDate.now();
+        final LocalDate checkIn = LocalDate.now().plusDays(1);
         final LocalDate checkOut = checkIn.plusDays(2);
 
         //THEN
         Assertions.assertThatCode(() -> verifyDateIntegrity(checkIn, checkOut))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    public void shouldThrowUnavailableRoomExceptionWhenVerifyDateIntegrity(){
+        //GIVEN
+        final LocalDate checkIn = LocalDate.now();
+        final LocalDate checkOut = LocalDate.now().plusDays(1);
+        final String unavailableRoomExceptionMessage = "The room is unavailable for the given range of dates.";
+
+        //THEN
+        Assertions.assertThatThrownBy(() -> verifyDateIntegrity(checkIn, checkOut))
+                .isInstanceOf(UnavailableRoomException.class)
+                .hasMessage(unavailableRoomExceptionMessage);
     }
 
     @Test
@@ -41,7 +52,7 @@ public class DateUtilTest {
     @Test
     public void shouldThrowInvalidCheckInDateOrderExceptionWhenVerifyDateIntegrity(){
         //GIVEN
-        final LocalDate checkIn = LocalDate.now();
+        final LocalDate checkIn = LocalDate.now().plusDays(1);
         final LocalDate checkOut = checkIn.minusDays(1);
         final String invalidCheckInDateOrderMessage = "The check-in date can't be greater than the check-out date.";
 
@@ -54,8 +65,8 @@ public class DateUtilTest {
     @Test
     public void shouldThrowInvalidReservationSpentTimeExceptionWhenVerifyDateIntegrity(){
         //GIVEN
-        final LocalDate checkIn = LocalDate.now();
-        final LocalDate checkOut = checkIn.plusDays(4);
+        final LocalDate checkIn = LocalDate.now().plusDays(1);
+        final LocalDate checkOut = checkIn.plusDays(3);
         final String invalidReservationSpentTimeException = "The reservation can't last longer than three days.";
 
         //THEN
