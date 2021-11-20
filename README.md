@@ -134,6 +134,7 @@ To run the container in the docker with the project, execute:
         ]
     }
    ```
+**Note: The date format used for requests and response is yyyy/MM/dd. (Date and time notation in Canada)**   
 
 In order to access the complete requisition documentation, check this link below:
 
