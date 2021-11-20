@@ -1,7 +1,7 @@
 package com.alten.hotel.book.api.controller;
 
-import com.alten.hotel.book.api.dto.ChangeReservationDTO;
-import com.alten.hotel.book.api.dto.CreateReservationDTO;
+import com.alten.hotel.book.api.dto.input.ChangeReservationInputDTO;
+import com.alten.hotel.book.api.dto.input.CreateReservationInputDTO;
 import com.alten.hotel.book.api.model.Reservation;
 import com.alten.hotel.book.api.service.ReservationService;
 import io.swagger.annotations.Api;
@@ -41,7 +41,7 @@ public class ReservationController {
      * @return Class with the output payload with the reservation data, if successful.
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Reservation> createReservation(@Valid @RequestBody CreateReservationDTO reservationDTO){
+    public ResponseEntity<Reservation> createReservation(@Valid @RequestBody CreateReservationInputDTO reservationDTO){
         return new ResponseEntity<>(reservationService.createReservation(reservationDTO), HttpStatus.CREATED);
     }
 
@@ -52,8 +52,8 @@ public class ReservationController {
 
     @PatchMapping(value = "/{id}/modify", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Reservation> modifyReservation(@PathVariable long id,
-                                                         @Valid @RequestBody ChangeReservationDTO changeReservationDTO){
-        return new ResponseEntity<>(reservationService.modifyReservation(id, changeReservationDTO), HttpStatus.OK);
+                                                         @Valid @RequestBody ChangeReservationInputDTO changeReservationInputDTO){
+        return new ResponseEntity<>(reservationService.modifyReservation(id, changeReservationInputDTO), HttpStatus.OK);
     }
 
 }

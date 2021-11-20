@@ -1,5 +1,6 @@
-package com.alten.hotel.book.api.dto;
+package com.alten.hotel.book.api.dto.input;
 
+import com.alten.hotel.book.api.utilitary.Constants;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,18 +18,23 @@ import java.time.LocalDate;
  * @since 1.0
  */
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChangeReservationDTO {
+public class CreateReservationInputDTO {
+
+    @NotNull(message = "You must choose at least one room.")
+    @JsonProperty("room_id")
+    private Long roomId;
 
     @NotNull(message = "The start date attribute can't have null or empty values.")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = Constants.LOCAL_DATE_FORMAT)
     @JsonProperty("check_in")
     private LocalDate checkIn;
 
     @NotNull(message = "The end date attribute can't have null or empty values.")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = Constants.LOCAL_DATE_FORMAT)
     @JsonProperty("check_out")
     private LocalDate checkOut;
 

@@ -1,9 +1,8 @@
-package com.alten.hotel.book.api.dto;
+package com.alten.hotel.book.api.dto.input;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,15 +17,10 @@ import java.time.LocalDate;
  * @since 1.0
  */
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateReservationDTO {
-
-    @NotNull(message = "You must choose at least one room.")
-    @JsonProperty("room_id")
-    private Long roomId;
+public class ChangeReservationInputDTO {
 
     @NotNull(message = "The start date attribute can't have null or empty values.")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")

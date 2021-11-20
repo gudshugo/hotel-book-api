@@ -1,14 +1,14 @@
 package com.alten.hotel.book.api.service;
 
-import com.alten.hotel.book.api.dto.ChangeReservationDTO;
-import com.alten.hotel.book.api.dto.CreateReservationDTO;
+import com.alten.hotel.book.api.dto.input.ChangeReservationInputDTO;
+import com.alten.hotel.book.api.dto.input.CreateReservationInputDTO;
 import com.alten.hotel.book.api.model.Reservation;
 
 public interface ReservationService {
 
-    Reservation createReservation(CreateReservationDTO createReservationDTO);
+    Reservation createReservation(CreateReservationInputDTO createReservationInputDTO);
 
     Reservation cancelReservation(long id);
 
-    Reservation modifyReservation(long id, ChangeReservationDTO changeReservationDTO);
+    Reservation modifyReservation(long id, ChangeReservationInputDTO changeReservationInputDTO);
 }

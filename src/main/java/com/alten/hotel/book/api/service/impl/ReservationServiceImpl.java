@@ -1,7 +1,7 @@
 package com.alten.hotel.book.api.service.impl;
 
-import com.alten.hotel.book.api.dto.ChangeReservationDTO;
-import com.alten.hotel.book.api.dto.CreateReservationDTO;
+import com.alten.hotel.book.api.dto.input.ChangeReservationInputDTO;
+import com.alten.hotel.book.api.dto.input.CreateReservationInputDTO;
 import com.alten.hotel.book.api.exception.ElementNotFoundException;
 import com.alten.hotel.book.api.exception.ReserveDateAlreadyMadeException;
 import com.alten.hotel.book.api.exception.UnavailableRoomException;
@@ -10,7 +10,6 @@ import com.alten.hotel.book.api.model.Room;
 import com.alten.hotel.book.api.repository.ReservationRepository;
 import com.alten.hotel.book.api.service.ReservationService;
 import com.alten.hotel.book.api.service.RoomService;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +35,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     @Transactional
-    public Reservation createReservation(CreateReservationDTO reservationDTO) {
+    public Reservation createReservation(CreateReservationInputDTO reservationDTO) {
         LocalDate checkIn = reservationDTO.getCheckIn();
         LocalDate checkOut = reservationDTO.getCheckOut();
 
@@ -71,9 +70,9 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     @Transactional
-    public Reservation modifyReservation(long id, ChangeReservationDTO changeReservationDTO) {
-        LocalDate checkIn = changeReservationDTO.getCheckIn();
-        LocalDate checkOut = changeReservationDTO.getCheckOut();
+    public Reservation modifyReservation(long id, ChangeReservationInputDTO changeReservationInputDTO) {
+        LocalDate checkIn = changeReservationInputDTO.getCheckIn();
+        LocalDate checkOut = changeReservationInputDTO.getCheckOut();
 
         verifyDateIntegrity(checkIn, checkOut);
 
@@ -105,7 +104,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     private void checkIfModifiedDateIsSameAsCurrentReservation(LocalDate currentCheckIn, LocalDate currentCheckOut,
                                               LocalDate newCheckIn, LocalDate newCheckOut){
-        if(compareLocalDates(currentCheckIn, currentCheckOut, newCheckIn, newCheckOut)){
+        if(compareReserveDates(currentCheckIn, currentCheckOut, newCheckIn, newCheckOut)){
             throw new ReserveDateAlreadyMadeException();
         }
     }
