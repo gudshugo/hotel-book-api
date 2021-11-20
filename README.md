@@ -142,6 +142,8 @@ In order to access the complete requisition documentation, check this link below
  http://localhost:8080/swagger-ui/
 ```   
 
+The Postman collection is located at the root of the project with the name **Hotel Book API.postman_collection**.
+
 ## Tests
 
 For this project, unit tests were created for the service and utility packages.
