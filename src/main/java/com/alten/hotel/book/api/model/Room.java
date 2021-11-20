@@ -1,7 +1,6 @@
 package com.alten.hotel.book.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +21,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@ApiModel("Class for persistence and reading tha represents a hotel room.")
 public class Room {
 
     @Id
