@@ -15,7 +15,7 @@ import static com.alten.hotel.book.api.utilitary.DateUtil.*;
 public class DateUtilTest {
 
     @Test
-    public void shouldTestVerifyDateIntegrityWithSuccess(){
+    public void shouldVerifyDateIntegrityWithSuccess(){
         //GIVEN
         final LocalDate checkIn = LocalDate.now();
         final LocalDate checkOut = checkIn.plusDays(2);
