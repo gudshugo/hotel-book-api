@@ -8,6 +8,14 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.Set;
 
+/**
+ * Data transfer class (DTO) that contains the
+ * to the Reservation class.
+ * @author Hugo Gois
+ * @version 1.0
+ * @since 1.0
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

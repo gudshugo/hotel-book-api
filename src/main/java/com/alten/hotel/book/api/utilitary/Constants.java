@@ -1,5 +1,12 @@
 package com.alten.hotel.book.api.utilitary;
 
+/**
+ * Utility class with constants used by other classes of the project.
+ * @author Hugo Gois
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class Constants {
 
     private Constants() {

@@ -103,6 +103,7 @@
 						<exclude>**/model/**</exclude>
 						<exclude>**/exception/**</exclude>
 						<exclude>**/config/**</exclude>
+						<exclude>**/controller/**</exclude>
 					</excludes>
 				</configuration>
 				<executions>

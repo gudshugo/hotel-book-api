@@ -169,7 +169,7 @@ public class ReservationServiceTest {
 
 
         //WHEN
-        when(reservationRepository.findByRoomIdAndIsReserved(id, true)).thenReturn(reservationExpected);
+        when(reservationRepository.findByIdAndIsReserved(id, true)).thenReturn(reservationExpected);
         when(reservationRepository.save(reservationExpected)).thenReturn(reservationExpected);
 
         Reservation reservationTested = reservationService.modifyReservation(id, inputRequest);

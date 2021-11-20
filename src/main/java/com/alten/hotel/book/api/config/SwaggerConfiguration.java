@@ -11,6 +11,13 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * Class responsible for swagger configuration annotations and methods.
+ * @author Hugo Gois
+ * @version 1.0
+ * @since 1.0
+ */
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfiguration {
@@ -29,7 +36,7 @@ public class SwaggerConfiguration {
         return new ApiInfoBuilder()
                 .title("Welcome to Hotel Book API")
                 .description(" REST API developed in Java (using Spring Boot) to function as a booking system for a hotel. This project is a technical test part of the Alten Group recruitment process.")
-                .version("1.0.0")
+                .version("1.0")
                 .contact(new Contact("Hugo Gois","https://www.linkedin.com/in/hugo-gois/", "gudshugo@gmail.com"))
                 .build();
     }

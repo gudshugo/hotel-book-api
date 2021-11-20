@@ -20,6 +20,14 @@ import java.util.Set;
 
 import static com.alten.hotel.book.api.utilitary.DateUtil.*;
 
+/**
+ * A reservation service implementation class containing methods referring to implementations
+ * of the ReservationService interface.
+ * @author Hugo Gois
+ * @version 1.0
+ * @since 1.0
+ */
+
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
@@ -32,6 +40,12 @@ public class ReservationServiceImpl implements ReservationService {
         this.roomService = roomService;
     }
 
+    /**
+     * Implementation of the method that creates a new reservation.
+     * @param reservationDTO Data transfer class (DTO) that contains the check-in and check-out dates
+     * of the hotel guest.
+     * @return A Reservation object created data class.
+     */
     @Override
     @Transactional
     public Reservation createReservation(CreateReservationInputDTO reservationDTO) {
@@ -54,6 +68,11 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationRepository.save(reservation);
     }
 
+    /**
+     * Implementation of the method that cancel a reservation.
+     * @param id A unique number that identifies a Reservation within the database.
+     * @return A Reservation object canceled data class.
+     */
     @Override
     @Transactional
     public Reservation cancelReservation(long id) {
@@ -67,6 +86,14 @@ public class ReservationServiceImpl implements ReservationService {
         throw new ElementNotFoundException(String.format("Reservation with id: %d not found.", id));
     }
 
+    /**
+     * Implementation of the method that modifies a reservation.
+     * @param id A unique number that identifies a Reservation within the database.
+     * @param changeReservationInputDTO Data transfer class (DTO) that contains the check-in and check-out dates
+     * of the hotel guest.
+     * @exception ElementNotFoundException It's thrown in case the reservation isn't found in the database.
+     * @return A Reservation object modified data class.
+     */
     @Override
     @Transactional
     public Reservation modifyReservation(long id, ChangeReservationInputDTO changeReservationInputDTO) {
@@ -75,7 +102,7 @@ public class ReservationServiceImpl implements ReservationService {
 
         verifyDateIntegrity(checkIn, checkOut);
 
-        Optional<Reservation> reservation = Optional.ofNullable(reservationRepository.findByRoomIdAndIsReserved(id, true));
+        Optional<Reservation> reservation = Optional.ofNullable(reservationRepository.findByIdAndIsReserved(id, true));
 
         if(reservation.isPresent()){
             Reservation currentReservation = reservation.get();
@@ -89,7 +116,13 @@ public class ReservationServiceImpl implements ReservationService {
         throw new ElementNotFoundException(String.format("Reservation with id: %d not found.", id));
     }
 
-
+    /**
+     * A private method that checks if a room is available for a reservation.
+     * @param roomId A unique number that identifies a Room within the database.
+     * @param checkIn Customer check-in date.
+     * @param checkOut Customer check-out date.
+     * @exception UnavailableRoomException It's thrown in case the room is unavailable for the given range of dates.
+     */
     private void checkIfRoomIsAvailable(long roomId, LocalDate checkIn, LocalDate checkOut){
         Set<Long> reservationIds = reservationRepository.findReservationsBetweenCheckInAndCheckOut(roomId,
                 checkIn, checkOut);

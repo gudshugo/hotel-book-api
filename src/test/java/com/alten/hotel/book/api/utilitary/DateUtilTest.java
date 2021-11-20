@@ -89,49 +89,4 @@ public class DateUtilTest {
         //THEN
         Assertions.assertThat(streamOfDates).contains(checkIn, checkOut);
     }
-
-    @Test
-    public void shouldCompareReserveDatesWhenTheyAreEqual(){
-        //GIVEN
-        final LocalDate currentCheckIn = LocalDate.now();
-        final LocalDate currentCheckOut = currentCheckIn.plusDays(1);
-        final LocalDate newCheckIn = LocalDate.now();
-        final LocalDate newCheckOut = newCheckIn.plusDays(1);
-
-        //WHEN
-        boolean isEqual = compareReserveDates(currentCheckIn, currentCheckOut, newCheckIn, newCheckOut);
-
-        //THEN
-        Assertions.assertThat(isEqual).isTrue();
-    }
-
-    @Test
-    public void shouldCompareReserveDatesWhenCurrentCheckInIsDifferentFromNewCheckIn(){
-        //GIVEN
-        final LocalDate currentCheckIn = LocalDate.now();
-        final LocalDate currentCheckOut = currentCheckIn.plusDays(2);
-        final LocalDate newCheckIn = LocalDate.now().plusDays(1);
-        final LocalDate newCheckOut = currentCheckIn.plusDays(2);
-
-        //WHEN
-        boolean isEqual = compareReserveDates(currentCheckIn, currentCheckOut, newCheckIn, newCheckOut);
-
-        //THEN
-        Assertions.assertThat(isEqual).isFalse();
-    }
-
-    @Test
-    public void shouldCompareReserveDatesWhenCurrentCheckOutIsDifferentFromNewCheckOut(){
-        //GIVEN
-        final LocalDate currentCheckIn = LocalDate.now();
-        final LocalDate currentCheckOut = currentCheckIn.plusDays(2);
-        final LocalDate newCheckIn = LocalDate.now();
-        final LocalDate newCheckOut = newCheckIn.plusDays(1);
-
-        //WHEN
-        boolean isEqual = compareReserveDates(currentCheckIn, currentCheckOut, newCheckIn, newCheckOut);
-
-        //THEN
-        Assertions.assertThat(isEqual).isFalse();
-    }
 }

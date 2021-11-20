@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
 
     /**
      * A method that intercepts RoomNotFoundException cases and returns the error messages and status code handled.
-     * @param elementNotFoundException Exception class used when a room isn't found in a database search.
+     * @param elementNotFoundException Exception thrown if a resource is not found.
      * @return A ResponseEntity with RoomNotFoundException handled its status codes and messages accordingly.
      */
     @ExceptionHandler(ElementNotFoundException.class)
@@ -31,6 +31,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.OK);
     }
 
+    /**
+     * A method that intercepts InvalidReservationSpentTimeException cases and returns the error messages and status code handled.
+     * @param invalidReservationSpentTimeException Exception thrown if the reservation date spent is longer than three days.
+     * @return A ResponseEntity with InvalidReservationSpentTimeException handled its status codes and messages accordingly.
+     */
     @ExceptionHandler(InvalidReservationSpentTimeException.class)
     public final ResponseEntity<ExceptionResponse> handleInvalidReservationSpentTimeException(InvalidReservationSpentTimeException invalidReservationSpentTimeException){
         ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
@@ -38,6 +43,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * A method that intercepts InvalidReservationRangeOfDaysException cases and returns the error messages and status code handled.
+     * @param invalidReservationRangeOfDaysException Exception thrown in case the reservation date is made with more than thirty days in advance.
+     * @return A ResponseEntity with InvalidReservationRangeOfDaysException handled its status codes and messages accordingly.
+     */
     @ExceptionHandler(InvalidReservationRangeOfDaysException.class)
     public final ResponseEntity<ExceptionResponse> handleInvalidReservationRangeOfDaysException(InvalidReservationRangeOfDaysException invalidReservationRangeOfDaysException){
         ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
@@ -45,6 +55,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * A method that intercepts MethodArgumentNotValidException cases and returns the error messages and status code handled.
+     * @param methodArgumentNotValidException Exception thrown in case input parameters are invalid using @Valid notation.
+     * @return A ResponseEntity with MethodArgumentNotValidException handled its status codes and messages accordingly.
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public final ResponseEntity<ExceptionResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException){
         ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
@@ -52,6 +67,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * A method that intercepts UnavailableRoomException cases and returns the error messages and status code handled.
+     * @param unavailableRoomException Exception thrown in case the room is not available for reservation.
+     * @return A ResponseEntity with UnavailableRoomException handled its status codes and messages accordingly.
+     */
     @ExceptionHandler(UnavailableRoomException.class)
     public final ResponseEntity<ExceptionResponse> handleUnavailableRoomException(UnavailableRoomException unavailableRoomException){
         ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
@@ -59,6 +79,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
+    /**
+     * A method that intercepts InvalidCheckInDateOrderException cases and returns the error messages and status code handled.
+     * @param invalidCheckInDateOrderException Exception thrown in case the check-in date is greater than the check-out date.
+     * @return A ResponseEntity with InvalidCheckInDateOrderException handled its status codes and messages accordingly.
+     */
     @ExceptionHandler(InvalidCheckInDateOrderException.class)
     public final ResponseEntity<ExceptionResponse> handleInvalidCheckInDateOrderException(InvalidCheckInDateOrderException invalidCheckInDateOrderException){
         ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
@@ -66,6 +91,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * A method that intercepts PastDayCheckInException cases and returns the error messages and status code handled.
+     * @param pastDayCheckInException Exception thrown in case the check-in date is a past date.
+     * @return A ResponseEntity with PastDayCheckInException handled its status codes and messages accordingly.
+     */
     @ExceptionHandler(PastDayCheckInException.class)
     public final ResponseEntity<ExceptionResponse> handlePastDayCheckInException(PastDayCheckInException pastDayCheckInException){
         ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),

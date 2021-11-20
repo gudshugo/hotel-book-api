@@ -11,13 +11,11 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 /**
- * Data transfer class (DTO) that contains the arrival and departure dates of the host.
- * to the Reservation class.
+ * Data transfer class (DTO) that contains the room id and a Set of available check-in and check-out dates.
  * @author Hugo Gois
  * @version 1.0
  * @since 1.0
  */
-
 
 @Data
 @AllArgsConstructor
