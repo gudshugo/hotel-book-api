@@ -1,6 +1,6 @@
 package com.alten.hotel.book.api.dto.input;
 
-import com.alten.hotel.book.api.utilitary.Constants;
+import com.alten.hotel.book.api.utility.Constants;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;

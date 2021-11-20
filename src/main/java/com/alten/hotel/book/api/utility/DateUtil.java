@@ -1,4 +1,4 @@
-package com.alten.hotel.book.api.utilitary;
+package com.alten.hotel.book.api.utility;
 
 import com.alten.hotel.book.api.exception.InvalidCheckInDateOrderException;
 import com.alten.hotel.book.api.exception.InvalidReservationRangeOfDaysException;
@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.stream.Stream;
 
-import static com.alten.hotel.book.api.utilitary.Constants.RESERVATION_MAX_RANGE_OF_DAYS;
-import static com.alten.hotel.book.api.utilitary.Constants.RESERVATION_MAX_SPENT_TIME;
+import static com.alten.hotel.book.api.utility.Constants.RESERVATION_MAX_RANGE_OF_DAYS;
+import static com.alten.hotel.book.api.utility.Constants.RESERVATION_MAX_SPENT_TIME;
 
 /**
  * Utility class with methods responsible for handling dates.

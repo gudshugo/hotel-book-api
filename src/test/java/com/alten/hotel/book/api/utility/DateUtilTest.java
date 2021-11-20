@@ -1,4 +1,4 @@
-package com.alten.hotel.book.api.utilitary;
+package com.alten.hotel.book.api.utility;
 
 import com.alten.hotel.book.api.exception.InvalidCheckInDateOrderException;
 import com.alten.hotel.book.api.exception.InvalidReservationRangeOfDaysException;
@@ -10,7 +10,7 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.util.stream.Stream;
 
-import static com.alten.hotel.book.api.utilitary.DateUtil.*;
+import static com.alten.hotel.book.api.utility.DateUtil.*;
 
 public class DateUtilTest {
 

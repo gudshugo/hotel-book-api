@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.alten.hotel.book.api.utilitary.DateUtil.getStreamRangeDatesBetweenTwoDates;
+import static com.alten.hotel.book.api.utility.DateUtil.getStreamRangeDatesBetweenTwoDates;
 
 /**
  * A reservation service implementation class containing methods referring to implementations

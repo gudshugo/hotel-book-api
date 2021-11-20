@@ -1,4 +1,4 @@
-package com.alten.hotel.book.api.utilitary;
+package com.alten.hotel.book.api.utility;
 
 /**
  * Utility class with constants used by other classes of the project.

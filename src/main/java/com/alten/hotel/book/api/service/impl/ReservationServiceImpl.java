@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Set;
 
-import static com.alten.hotel.book.api.utilitary.DateUtil.*;
+import static com.alten.hotel.book.api.utility.DateUtil.*;
 
 /**
  * A reservation service implementation class containing methods referring to implementations

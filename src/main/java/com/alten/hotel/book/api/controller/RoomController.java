@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
-import static com.alten.hotel.book.api.utilitary.Constants.LOCAL_DATE_FORMAT;
-import static com.alten.hotel.book.api.utilitary.Constants.ROOT_URL_ROOM_CONTROLLER;
+import static com.alten.hotel.book.api.utility.Constants.LOCAL_DATE_FORMAT;
+import static com.alten.hotel.book.api.utility.Constants.ROOT_URL_ROOM_CONTROLLER;
 
 /**
  * Class responsible for implementation of a set of endpoints (CRUD operations) in a REST controller referring
