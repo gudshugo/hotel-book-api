@@ -1,16 +1,12 @@
 package com.alten.hotel.book.api.utility;
 
-import com.alten.hotel.book.api.exception.InvalidCheckInDateOrderException;
-import com.alten.hotel.book.api.exception.InvalidReservationRangeOfDaysException;
-import com.alten.hotel.book.api.exception.InvalidReservationSpentTimeException;
-import com.alten.hotel.book.api.exception.PastDayCheckInException;
+import com.alten.hotel.book.api.exception.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.stream.Stream;
 
-import static com.alten.hotel.book.api.utility.Constants.RESERVATION_MAX_RANGE_OF_DAYS;
-import static com.alten.hotel.book.api.utility.Constants.RESERVATION_MAX_SPENT_TIME;
+import static com.alten.hotel.book.api.utility.Constants.*;
 
 /**
  * Utility class with methods responsible for handling dates.
@@ -29,10 +25,22 @@ public class DateUtil {
      * @param checkOut Customer check-out date.
      */
     public static void verifyDateIntegrity(LocalDate checkIn, LocalDate checkOut){
+        validadeIfCheckInDateIsDifferentFromNow(checkIn);
         validadePastCheckIn(checkIn);
         validateCheckInDateOrder(checkIn, checkOut);
         validateReservationSpentTimeLongerThanThreeDays(checkIn, checkOut);
         validateReservationCheckInAfterThirtyDays(checkIn);
+    }
+
+    /**
+     * Method that checks if check-in date is different from today.
+     * @param checkIn Customer check-in date.
+     * @exception UnavailableRoomException It's thrown in case the room is unavailable for the given range of dates.
+     */
+    private static void validadeIfCheckInDateIsDifferentFromNow(LocalDate checkIn){
+        if(LocalDate.now().isEqual(checkIn)){
+            throw new UnavailableRoomException();
+        }
     }
 
     /**
@@ -71,13 +79,15 @@ public class DateUtil {
 
     /**
      * Method that verifies if the reservation spent date is longer than three days.
+     *  * Note: It is important to mention that an extra day was added to the calculation result of the ChronoUnit.until()
+     *  function because the end date is not included in the calculation (source: javadoc documentation).
      * @param checkIn Customer check-in.
      * @param checkOut Customer check-out.
      * @exception InvalidReservationSpentTimeException Exception thrown if the reservation spent date
      * is longer than three days.
      */
     private static void validateReservationSpentTimeLongerThanThreeDays(LocalDate checkIn, LocalDate checkOut){
-        long spentTime = checkIn.until(checkOut, ChronoUnit.DAYS);
+        long spentTime = checkIn.until(checkOut, ChronoUnit.DAYS) + EXCLUDED_END_DATE;
 
         if(spentTime > RESERVATION_MAX_SPENT_TIME){
             throw new InvalidReservationSpentTimeException();

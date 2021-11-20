@@ -39,7 +39,7 @@ public class ReservationServiceTest {
     @Test
     public void shouldCreateReservationWithSuccess(){
         //GIVEN
-        final CreateReservationInputDTO inputRequest = new CreateReservationInputDTO(1L, LocalDate.now(),
+        final CreateReservationInputDTO inputRequest = new CreateReservationInputDTO(1L, LocalDate.now().plusDays(1),
                 LocalDate.now().plusDays(2));
         final Room roomExpected = createTestRoom();
         final Reservation reservationTested = createTestReservation(roomExpected);
@@ -83,7 +83,7 @@ public class ReservationServiceTest {
     @Test
     public void shouldThrowInvalidReservationSpentTimeExceptionWhenCreateReservation(){
         //GIVEN
-        final CreateReservationInputDTO inputRequest =  new CreateReservationInputDTO(1L, LocalDate.now(),
+        final CreateReservationInputDTO inputRequest =  new CreateReservationInputDTO(1L, LocalDate.now().plusDays(1),
                 LocalDate.now().plusDays(5));
 
         //THEN
@@ -105,7 +105,7 @@ public class ReservationServiceTest {
     @Test
     public void shouldThrowUnavailableRoomExceptionWhenCreateReservation(){
         //GIVEN
-        final CreateReservationInputDTO inputRequest = new CreateReservationInputDTO(1L, LocalDate.now(),
+        final CreateReservationInputDTO inputRequest = new CreateReservationInputDTO(1L, LocalDate.now().plusDays(1),
                 LocalDate.now().plusDays(2));
         final Room roomExpected = createTestRoom();
         final String unavailableRoomExceptionMessage = "The room is unavailable for the given range of dates.";
@@ -162,8 +162,8 @@ public class ReservationServiceTest {
     public void shouldModifyReservationWithSuccess(){
         //GIVEN
         final long id = 10L;
-        final ChangeReservationInputDTO inputRequest = new ChangeReservationInputDTO(LocalDate.now(),
-                LocalDate.now().plusDays(1));
+        final ChangeReservationInputDTO inputRequest = new ChangeReservationInputDTO(LocalDate.now().plusDays(1),
+                LocalDate.now().plusDays(2));
         final Room roomExpected = createTestRoom();
         final Reservation reservationExpected = createTestReservation(roomExpected);
 
@@ -184,7 +184,7 @@ public class ReservationServiceTest {
     public void shouldThrowElementNotFoundExceptionWhenModifyReservation(){
         //GIVEN
         final long id = 10L;
-        final ChangeReservationInputDTO inputRequest = new ChangeReservationInputDTO(LocalDate.now(),
+        final ChangeReservationInputDTO inputRequest = new ChangeReservationInputDTO(LocalDate.now().plusDays(1),
                 LocalDate.now().plusDays(2));
         final String elementNotFoundExceptionMessage = String.format("Reservation with id: %d not found.", id);
 
@@ -206,7 +206,7 @@ public class ReservationServiceTest {
     private Reservation createTestReservation(Room room){
         return Reservation.builder()
                 .isReserved(true)
-                .checkIn(LocalDate.now())
+                .checkIn(LocalDate.now().plusDays(1))
                 .checkOut(LocalDate.now().plusDays(2))
                 .room(room)
                 .build();
