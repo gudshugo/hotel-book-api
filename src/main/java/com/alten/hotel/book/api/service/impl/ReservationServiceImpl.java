@@ -44,7 +44,7 @@ public class ReservationServiceImpl implements ReservationService {
      * Implementation of the method that creates a new reservation.
      * @param reservationDTO Data transfer class (DTO) that contains the check-in and check-out dates
      * of the hotel guest.
-     * @return A Reservation object created data class.
+     * @return A Reservation object created data.
      */
     @Override
     @Transactional
@@ -71,7 +71,7 @@ public class ReservationServiceImpl implements ReservationService {
     /**
      * Implementation of the method that cancel a reservation.
      * @param id A unique number that identifies a Reservation within the database.
-     * @return A Reservation object canceled data class.
+     * @return A Reservation object canceled data.
      */
     @Override
     @Transactional
@@ -92,7 +92,7 @@ public class ReservationServiceImpl implements ReservationService {
      * @param changeReservationInputDTO Data transfer class (DTO) that contains the check-in and check-out dates
      * of the hotel guest.
      * @exception ElementNotFoundException It's thrown in case the reservation isn't found in the database.
-     * @return A Reservation object modified data class.
+     * @return A Reservation object modified data.
      */
     @Override
     @Transactional
