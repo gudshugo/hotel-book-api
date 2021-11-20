@@ -1,12 +1,16 @@
 # hotel-book-api
-A REST API developed in Java (using Spring Boot) to function as a booking system for hotels.
+A REST API developed in Java (using Spring Boot) to function as a booking system for hotels.\
 This project is a technical test part of the Alten Group recruitment process.
+
+---
 
 ## Requirements:
 
 ```Maven``` 
 ```Java V.11+```
 ```Docker```
+
+---
 
 ## Running the project:
 
@@ -22,9 +26,11 @@ To run the container in the docker with the project, execute:
 
 3 - After that, wait a few second and the API endpoints will already be available for calling at `http://localhost:8080`.
 
+---
+
 # API Endpoins:
 
-1 - **Create reservation endpoint.**
+1 - **Create reservation endpoint.**\
 
 **Description**: API endpoint that creates a new reservation.
 **Syntax**: `http://localhost:8080/api/v1/reservation`
@@ -46,7 +52,7 @@ To run the container in the docker with the project, execute:
 }
 ```
 
-2 - **Cancel reservation endpoint.**
+2 - **Cancel reservation endpoint.**\
 
 **Description**: API endpoint that cancel a reservation.**
 **Syntax**: `http://localhost:8080/api/v1/reservation/{id}/cancel`
