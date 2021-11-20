@@ -41,6 +41,10 @@ To run the container in the docker with the project, execute:
 
 3 - After that, wait a few second and the API endpoints will already be available for calling at `http://localhost:8080`.
 
+**Note: If you want to run the project locally, without using the docker environment, change the application.properties configuration to the "dev" profile, as in the image below.**
+
+![image](https://user-images.githubusercontent.com/13324028/142736124-9a2370e1-f728-4489-8659-ff8dd5a2fa04.png)
+
 # API Endpoins:
 
 1 - **Create reservation endpoint:**
