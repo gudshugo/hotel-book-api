@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
 
     /**
      * A method that intercepts any other cases of Exceptions and returns his error message and status code handled.
-     * @param exception Exception thrown if a resource is not found.
+     * @param exception Exception thrown for any other exception cases.
      * @return A ResponseEntity with Exception handled its status codes and messages accordingly.
      */
     @ExceptionHandler(Exception.class)
