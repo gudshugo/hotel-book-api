@@ -2,6 +2,7 @@ package com.alten.hotel.book.api.service.impl;
 
 import com.alten.hotel.book.api.dto.output.RoomAvailabilityOutputDTO;
 import com.alten.hotel.book.api.exception.ElementNotFoundException;
+import com.alten.hotel.book.api.model.Reservation;
 import com.alten.hotel.book.api.model.Room;
 import com.alten.hotel.book.api.repository.RoomRepository;
 import com.alten.hotel.book.api.service.RoomService;
@@ -60,6 +61,7 @@ public class RoomServiceImpl implements RoomService {
      */
     @Override
     public RoomAvailabilityOutputDTO getRoomAvailabilityByGivenDates(long id, LocalDate checkIn, LocalDate checkOut) {
+
         Room room = findById(id);
 
         Set<LocalDate> possibleReserveDates = getStreamRangeDatesBetweenTwoDates(checkIn, checkOut)
@@ -67,6 +69,7 @@ public class RoomServiceImpl implements RoomService {
 
         Set<LocalDate> reservedDates = room.getReservation()
                                         .stream()
+                                        .filter(Reservation::isReserved)
                                         .flatMap(reservation -> getStreamRangeDatesBetweenTwoDates(reservation.getCheckIn(), reservation.getCheckOut()))
                                         .collect(Collectors.toSet());
 
