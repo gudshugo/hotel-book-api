@@ -31,13 +31,13 @@ The requirements are:
 
 To run the container in the docker with the project, execute: 
 
-1 - On the project root, run:
+1 - On the project root path, run:
 
 `$ mvn clean install`
 
 2 - After mvn build, run:
 
-`$ docker-compose -f [PROJECT_ROOT_PATH]\docker-compose.yml up -d`
+`$ docker-compose -f .\docker-compose.yml up -d`
 
 3 - After that, wait a few second and the API endpoints will already be available for calling at `http://localhost:8080`.
 
