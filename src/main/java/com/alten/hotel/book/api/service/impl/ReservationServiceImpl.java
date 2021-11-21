@@ -13,12 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Set;
 
-import static com.alten.hotel.book.api.utility.DateUtil.*;
+import static com.alten.hotel.book.api.utility.DateUtil.verifyDateIntegrity;
 
 /**
  * A reservation service implementation class containing methods referring to implementations
@@ -56,7 +55,7 @@ public class ReservationServiceImpl implements ReservationService {
 
         Room room = roomService.findById(reservationDTO.getRoomId());
 
-        checkIfRoomIsAvailable(room.getId(), checkIn, checkOut);
+        checkIfExistsAnyReservation(room.getId(), checkIn, checkOut);
 
         Reservation reservation = Reservation.builder()
                 .isReserved(true)
@@ -106,7 +105,7 @@ public class ReservationServiceImpl implements ReservationService {
 
         if(reservation.isPresent()){
             Reservation currentReservation = reservation.get();
-            checkIfRoomIsAvailable(currentReservation.getRoom().getId(), checkIn, checkOut);
+            checkIfExistsAnyReservation(currentReservation.getRoom().getId(), checkIn, checkOut);
 
             currentReservation.setCheckIn(checkIn);
             currentReservation.setCheckOut(checkOut);
@@ -117,13 +116,13 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     /**
-     * A private method that checks if a room is available for a reservation.
+     * A private method that checks if any active reservation by a given roomId and a range of dates.
      * @param roomId A unique number that identifies a Room within the database.
      * @param checkIn Customer check-in date.
      * @param checkOut Customer check-out date.
      * @exception UnavailableRoomException It's thrown in case the room is unavailable for the given range of dates.
      */
-    private void checkIfRoomIsAvailable(long roomId, LocalDate checkIn, LocalDate checkOut){
+    private void checkIfExistsAnyReservation(long roomId, LocalDate checkIn, LocalDate checkOut){
         Set<Long> reservationIds = reservationRepository.findReservationsBetweenCheckInAndCheckOut(roomId,
                 checkIn, checkOut);
 

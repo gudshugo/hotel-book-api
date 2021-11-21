@@ -20,6 +20,18 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
 
     /**
+     * A method that intercepts any other cases of Exceptions and returns his error message and status code handled.
+     * @param exception Exception thrown if a resource is not found.
+     * @return A ResponseEntity with Exception handled its status codes and messages accordingly.
+     */
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<ExceptionResponse> handleAnyOtherException(Exception exception){
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
+                exception.getMessage());
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
      * A method that intercepts RoomNotFoundException cases and returns the error messages and status code handled.
      * @param elementNotFoundException Exception thrown if a resource is not found.
      * @return A ResponseEntity with RoomNotFoundException handled its status codes and messages accordingly.
