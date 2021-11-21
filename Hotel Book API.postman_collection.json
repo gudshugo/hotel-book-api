@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "7b3d946f-6fbd-485c-9a1c-0afd6b82b223",
+		"name": "Hotel Book API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a Reservation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"room_id\": 1, \r\n    \"check_in\": \"2021-11-21\",\r\n    \"check_out\": \"2021-11-23\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/reservation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"reservation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel a Reservation",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/reservation/3/cancel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"reservation",
+						"3",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify a reservation",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"check_in\": \"2021-12-15\",\r\n    \"check_out\": \"2021-12-17\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/reservation/5/modify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"reservation",
+						"5",
+						"modify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check room availability by dates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/room/1/availability?check_in=2021-11-01&check_out=2021-11-25",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"room",
+						"1",
+						"availability"
+					],
+					"query": [
+						{
+							"key": "check_in",
+							"value": "2021-11-01"
+						},
+						{
+							"key": "check_out",
+							"value": "2021-11-25"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API-docs Swagger",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v2/api-docs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v2",
+						"api-docs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
